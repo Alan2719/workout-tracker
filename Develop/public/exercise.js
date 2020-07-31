@@ -86,7 +86,7 @@ function validateInputs() {
     }
   }
 
-  if (isValid) {
+  if (isValid) { //If all the fields are full, the buttons are disabled.
     completeButton.removeAttribute("disabled");
     addButton.removeAttribute("disabled");
   } else {

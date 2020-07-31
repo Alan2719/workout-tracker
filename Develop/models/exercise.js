@@ -14,7 +14,7 @@ const ExerciseSchema = new Schema({
     weight: {
         type: Number
     },
-    repetitions: {
+    reps: {
         type: Number
     },
     duration: {
