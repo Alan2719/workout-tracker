@@ -45,7 +45,7 @@ module.exports = function(app) {
         db.Workout.find()
         .then(Workout => {
             //console.log(Workout);
-            //console.log(typeof Workout[0]._id);
+            console.log("ID OF RESPONSE",typeof Workout[0]._id);
             res.json(Workout);
         })
         .catch(err => {
@@ -57,7 +57,7 @@ module.exports = function(app) {
     app.put("/api/workouts/:id",(req,res)=> {
         let id = mongoose.Types.ObjectId(req.params.id);
         console.log(id);
-        //console.log(typeof id);
+        console.log("ID OF URL",typeof id);
         console.log(req.body);
         db.Workout.findByIdAndUpdate(id, {$push: {exercises: req.body}}, {new: true, upsert: true})
         .then(Exercise => {
@@ -68,6 +68,18 @@ module.exports = function(app) {
             res.json(err);
         })
     });
+
+    /*app.put("/api/workouts/:id",({ body, params },res)=> {
+        
+        db.Workout.findByIdAndUpdate(params.id, {$push: {exercises: body}}, {new: true, runValidators: true})
+        .then(Exercise => {
+            console.log(Exercise);
+            res.json(Exercise);
+        })
+        .catch(err => {
+            res.json(err);
+        })
+    });*/
 
     /*app.put("/api/workouts/:id",(req,res) => {
         let id = req.params.id;
