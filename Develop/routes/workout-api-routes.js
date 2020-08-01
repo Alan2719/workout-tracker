@@ -40,7 +40,7 @@ module.exports = function(app) {
     });*/
 
     //Get the workout information
-    app.get("/api/workout",(req,res) => {
+    app.get("/api/workouts",(req,res) => {
         //let id = mongoose.Types.ObjectId(req.params.id);
         db.Workout.find()
         .then(Workout => {
