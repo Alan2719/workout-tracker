@@ -9,8 +9,4 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname,"/../public/stats.html"))
     });
 
-    app.use((req,res)=>{
-        res.sendFile(path.join(__dirname,"/../public/index.html"));
-        //console.log(path.join(__dirname,"./frontend/index.html"));
-    });
-};
+   
