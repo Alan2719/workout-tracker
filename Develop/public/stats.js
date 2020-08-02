@@ -1,11 +1,12 @@
 // get all workout data from back-end
 
+//Fetch to get the information from the back-end.
 fetch("/api/workouts/range")
   .then(response => {
     return response.json();
   })
   .then(data => {
-    populateChart(data);
+    populateChart(data); //Send the response to the function
   });
 
 
@@ -33,12 +34,15 @@ API.getWorkoutsInRange()
 
   return arr;
   }
+
+  //Call each function that will extract the information from the response.
 function populateChart(data) {
-  let durations = duration(data);
+  let durations = duration(data);calculateTotalWeight
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
 
+  //Canvas tag to create grpahs. 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
@@ -46,8 +50,8 @@ function populateChart(data) {
 
   let lineChart = new Chart(line, {
     type: "line",
-    data: {
-      labels: [
+    data: {       
+      labels: [   //x axis
         "Sunday",
         "Monday",
         "Tuesday",
@@ -56,7 +60,7 @@ function populateChart(data) {
         "Friday",
         "Saturday"
       ],
-      datasets: [
+      datasets: [   
         {
           label: "Workout Duration In Minutes",
           backgroundColor: "red",
@@ -186,6 +190,8 @@ function populateChart(data) {
   });
 }
 
+//From the response, get the array with the exercises array and push
+//to an empty duration array the duration of each exercise. 
 function duration(data) {
   let durations = [];
 

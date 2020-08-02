@@ -53,19 +53,34 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/workouts/range",(req,res) => {
+        //let id = mongoose.Types.ObjectId(req.params.id);
+        db.Workout.find()
+        .then(Workout => {
+            //console.log(Workout);
+            console.log("ID OF RESPONSE",typeof Workout[0]._id);
+            res.json(Workout);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+    });
+
     //Updte the exercise array 
-    app.put("/api/workouts/:id",(req,res)=> {
-        let id = mongoose.Types.ObjectId(req.params.id);
+    app.put("/api/workouts/:id",({body,params},res)=> {
+        //let id = mongoose.Types.ObjectId(req.params.id);
+        let id = params.id;
         console.log(id);
         console.log("ID OF URL",typeof id);
-        console.log(req.body);
-        db.Workout.findByIdAndUpdate(id, {$push: {exercises: req.body}}, {new: true, upsert: true})
+        //console.log(req.body);
+        db.Workout.findByIdAndUpdate(id, {$push: {exercises: body}}, {new: true, upsert: true})
         .then(Exercise => {
             console.log(Exercise);
             res.json(Exercise);
         })
         .catch(err => {
-            res.json(err);
+            //res.json(err);
+            console.log(err.message);
         })
     });
 
