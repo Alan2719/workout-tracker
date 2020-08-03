@@ -20,6 +20,15 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 require("./routes/workout-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
+mongoose.Promise = global.Promise;
+
+mongoose.connect (
+  process.env.MONGODB_URI || "mongodb://user:password1@ds027489.mlab.com:27489/heroku_wrrcc7n1",
+  {
+    useMongoClient: true
+  }
+);
+
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
   });
